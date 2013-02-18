@@ -1,0 +1,16 @@
+{
+    "name": "universal-service-handler",
+    "type": "library",
+    "description": "Universal Service Handler",
+    "autoload": {
+        "psr-0": { "UniversalServiceHandler": "src/" }
+    },
+    "require": {
+        "php":                      ">=5.3.3",
+        "optionable/optionable":    "dev-master"
+    },
+    "require-dev": {
+        "EHER/PHPUnit":             "1.6"
+    },
+    "minimum-stability":            "dev"
+}
