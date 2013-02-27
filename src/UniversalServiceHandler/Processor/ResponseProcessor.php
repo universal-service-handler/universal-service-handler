@@ -9,6 +9,7 @@ class ResponseProcessor implements ProcessorInterface
 {
     protected $errorMapper;
     protected $responseMapper;
+    protected $statusMapper;
     protected $responseValidator;
 
     function __construct($options)
@@ -27,6 +28,12 @@ class ResponseProcessor implements ProcessorInterface
         }
 
         $this->responseMapper = $options['response_mapper'];
+
+        if (!$options->offsetExists('status_mapper')) {
+            throw new \RuntimeException('status_mapper parameter is required.');
+        }
+
+        $this->statusMapper = $options['status_mapper'];
     }
 
     public function process($unprocessedData)
@@ -37,10 +44,12 @@ class ResponseProcessor implements ProcessorInterface
 
         $errors = $this->errorMapper->map($unprocessedData);
         $mappedData = $this->responseMapper->map($unprocessedData);
+        $status = $this->statusMapper->map($unprocessedData);
 
         $response = new Response();
         $response->setData($mappedData);
         $response->setErrors($errors);
+        $response->setStatus($status);
 
         return $response;
     }
