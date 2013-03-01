@@ -8,7 +8,7 @@ use UniversalServiceHandler\Response\Response;
 class ResponseProcessor implements ProcessorInterface
 {
     protected $errorMapper;
-    protected $responseMapper;
+    protected $dataMapper;
     protected $statusMapper;
     protected $responseValidator;
 
@@ -23,11 +23,11 @@ class ResponseProcessor implements ProcessorInterface
 
         $this->errorMapper = $options['error_mapper'];
 
-        if (!$options->offsetExists('response_mapper')) {
-            throw new \RuntimeException('response_mapper parameter is required.');
+        if (!$options->offsetExists('data_mapper')) {
+            throw new \RuntimeException('data_mapper parameter is required.');
         }
 
-        $this->responseMapper = $options['response_mapper'];
+        $this->dataMapper = $options['data_mapper'];
 
         if (!$options->offsetExists('status_mapper')) {
             throw new \RuntimeException('status_mapper parameter is required.');
@@ -43,7 +43,7 @@ class ResponseProcessor implements ProcessorInterface
         }
 
         $errors = $this->errorMapper->map($unprocessedData);
-        $mappedData = $this->responseMapper->map($unprocessedData);
+        $mappedData = $this->dataMapper->map($unprocessedData);
         $status = $this->statusMapper->map($unprocessedData);
 
         $response = new Response();
