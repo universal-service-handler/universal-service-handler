@@ -30,16 +30,15 @@ class XPathMapper implements MapperInterface
 
     public function map($unmappedData)
     {
-        $xmlEntity = simplexml_load_string($unmappedData);
-
-        $entity = $xmlEntity->xpath($this->xPath);
-
+        $xmlEntity = @simplexml_load_string($unmappedData);
         $value = '';
 
-        if (array_key_exists(0, $entity)) {
-            $value = (string) $entity[0];
+        if ($xmlEntity !== false) {
+            $entity = $xmlEntity->xpath($this->xPath);
+            if (array_key_exists(0, $entity)) {
+                $value = (string) $entity[0];
+            }
         }
-
         return $value;
     }
 }
