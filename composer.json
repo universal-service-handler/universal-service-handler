@@ -2,6 +2,17 @@
     "name": "universal-service-handler",
     "type": "library",
     "description": "Universal Service Handler",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name":   "Zsolt Javorszky",
+            "email":  "zsolt.javorszky@gmail.com"
+        },
+        {
+            "name":   "Sandor Legoza",
+            "email":  "sandor.legoza@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-0": { "UniversalServiceHandler": "src/" }
     },
