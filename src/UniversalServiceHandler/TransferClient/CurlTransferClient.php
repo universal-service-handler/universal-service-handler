@@ -44,6 +44,11 @@ class CurlTransferClient implements TransferClientInterface
         return $response;
     }
 
+    public function getCurlOptions()
+    {
+        return $this->curlOptions;
+    }
+
     protected function setupDefaults(Optionable $options)
     {
         $options->setDefaultOption('options', array());
