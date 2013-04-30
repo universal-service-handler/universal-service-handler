@@ -19,6 +19,7 @@ class ResponseProcessor implements ProcessorInterface
     protected $errorMapper;
     protected $dataMapper;
     protected $statusMapper;
+    protected $response;
     protected $responseValidator;
 
     function __construct($options)
@@ -43,6 +44,8 @@ class ResponseProcessor implements ProcessorInterface
         }
 
         $this->statusMapper = $options['status_mapper'];
+
+        $this->response = $options['response'];
     }
 
     public function process($unprocessedData)
@@ -55,7 +58,7 @@ class ResponseProcessor implements ProcessorInterface
         $mappedData = $this->dataMapper->map($unprocessedData);
         $status = $this->statusMapper->map($unprocessedData);
 
-        $response = new Response();
+        $response = $this->response;
         $response->setData($mappedData);
         $response->setErrors($errors);
         $response->setStatus($status);
@@ -75,6 +78,9 @@ class ResponseProcessor implements ProcessorInterface
     protected function setupDefaults(Optionable $options)
     {
         $options->setDefaultOption('response_validator', null);
+        $options->setDefaultOption('response', new Response());
+
+
 
         return $options;
     }
