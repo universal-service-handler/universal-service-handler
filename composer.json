@@ -18,7 +18,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "optionable/optionable": "0.5.*"
+        "flyingwhale/optionable": "0.5.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
