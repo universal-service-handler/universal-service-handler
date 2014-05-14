@@ -11,7 +11,6 @@
 namespace UniversalServiceHandler\Processor;
 
 use Optionable;
-use UniversalServiceHandler\Processor\ProcessorInterface;
 use UniversalServiceHandler\Response\Response;
 
 class ResponseProcessor implements ProcessorInterface
@@ -79,8 +78,6 @@ class ResponseProcessor implements ProcessorInterface
     {
         $options->setDefaultOption('response_validator', null);
         $options->setDefaultOption('response', new Response());
-
-
 
         return $options;
     }
