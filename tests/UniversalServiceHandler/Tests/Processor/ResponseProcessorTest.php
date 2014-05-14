@@ -1,5 +1,5 @@
 <?php
-namespace UniversalServiceHandler\Tests\TransferClient;
+namespace UniversalServiceHandler\Tests\Processor;
 
 use UniversalServiceHandler\Mapper\RelayMapper;
 use UniversalServiceHandler\Processor\ResponseProcessor;

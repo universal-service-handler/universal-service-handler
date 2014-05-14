@@ -1,5 +1,5 @@
 <?php
-namespace UniversalServiceHandler\Tests\TransferClient;
+namespace UniversalServiceHandler\Tests\Response;
 
 use UniversalServiceHandler\Response\Response;
 

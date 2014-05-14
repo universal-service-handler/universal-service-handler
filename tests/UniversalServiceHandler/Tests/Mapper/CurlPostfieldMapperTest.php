@@ -1,5 +1,6 @@
 <?php
-namespace UniversalServiceHandler\Tests\TransferClient;
+
+namespace UniversalServiceHandler\Tests\Mapper;
 
 use UniversalServiceHandler\Mapper\CurlPostfieldMapper;
 

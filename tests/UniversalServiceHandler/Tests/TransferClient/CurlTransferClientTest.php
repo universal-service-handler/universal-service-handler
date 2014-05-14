@@ -18,5 +18,4 @@ class CurlTransferClientTest extends \PHPUnit_Framework_TestCase
         $curlTransferClient = new CurlTransferClient($options);
         $this->assertEquals($curlTransferClient->getCurlOptions(), $curlOptions);
     }
-
 }
