@@ -1,7 +1,6 @@
 *~
 #*#
 .*.swp
+/bin
 /build
-/vendor/
-composer.phar
-composer.lock
+/vendor
