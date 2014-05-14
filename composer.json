@@ -22,7 +22,8 @@
         "pimple/pimple": "@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "*"
     },
     "config": {
         "bin-dir": "bin"
