@@ -18,8 +18,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "flyingwhale/optionable": "0.5.*",
-        "pimple/pimple": "@dev"
+        "flyingwhale/optionable": "0.5.*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
