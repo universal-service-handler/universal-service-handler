@@ -18,7 +18,8 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "flyingwhale/optionable": "0.5.*"
+        "flyingwhale/optionable": "0.5.*",
+        "symfony/event-dispatcher": "~2.4"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
