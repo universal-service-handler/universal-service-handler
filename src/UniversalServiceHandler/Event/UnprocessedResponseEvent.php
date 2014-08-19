@@ -14,6 +14,9 @@ use Symfony\Component\EventDispatcher\Event;
 
 class UnprocessedResponseEvent extends Event
 {
+    /** @var  string */
+    protected $serviceName;
+
     /**
      * @var mixed
      */
@@ -33,5 +36,21 @@ class UnprocessedResponseEvent extends Event
     public function getUnprocessedResponse()
     {
         return $this->unprocessedResponse;
+    }
+
+    /**
+     * @param string $serviceName
+     */
+    public function setServiceName($serviceName)
+    {
+        $this->serviceName = $serviceName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceName()
+    {
+        return $this->serviceName;
     }
 }

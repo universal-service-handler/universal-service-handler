@@ -22,6 +22,8 @@ use UniversalServiceHandler\TransferClient\TransferClientInterface;
 
 class Service
 {
+    const NAME = "service";
+
     /** @var  ProcessorInterface */
     protected $requestProcessor;
 
@@ -33,6 +35,9 @@ class Service
 
     /** @var  EventDispatcherInterface */
     protected $dispatcher;
+
+    /** @var string */
+    protected $name;
 
     function __construct($options)
     {
@@ -59,6 +64,7 @@ class Service
         $this->requestProcessor = $options['request_processor'];
         $this->responseProcessor = $options['response_processor'];
         $this->dispatcher = $options['dispatcher'];
+        $this->name = $options['name'];
     }
 
     public function callService($unprocessedRequest)
@@ -66,17 +72,21 @@ class Service
         $dispatcher = $this->dispatcher;
 
         $unprocessedRequestEvent = new UnprocessedRequestEvent($unprocessedRequest);
+        $unprocessedRequestEvent->setServiceName($this->name);
         $dispatcher->dispatch(Events::preRequestProcess, $unprocessedRequestEvent);
         $request = $this->requestProcessor->process($unprocessedRequest);
         $processedRequestEvent = new RequestEvent($request);
+        $processedRequestEvent->setServiceName($this->name);
         $dispatcher->dispatch(Events::postRequestProcess, $processedRequestEvent);
 
         $unprocessedResponse = $this->transferClient->callService($request);
 
         $unprocessedResponseEvent = new UnprocessedResponseEvent($unprocessedResponse);
+        $unprocessedResponseEvent->setServiceName($this->name);
         $dispatcher->dispatch(Events::preResponseProcess, $unprocessedResponseEvent);
         $response = $this->responseProcessor->process($unprocessedResponse);
         $responseEvent = new ResponseEvent($response);
+        $responseEvent->setServiceName($this->name);
         $dispatcher->dispatch(Events::postResponseProcess, $responseEvent);
 
         return $response;
@@ -93,6 +103,7 @@ class Service
     protected function setupDefaults(Optionable $options)
     {
         $options->setDefaultOption('dispatcher', new EventDispatcher());
+        $options->setDefaultOption('name', Service::NAME);
 
         return $options;
     }

@@ -14,6 +14,9 @@ use Symfony\Component\EventDispatcher\Event;
 
 class RequestEvent extends Event
 {
+    /** @var  string */
+    protected $serviceName;
+
     /** @var  mixed */
     protected $request;
 
@@ -31,5 +34,21 @@ class RequestEvent extends Event
     public function getRequest()
     {
         return $this->request;
+    }
+
+    /**
+     * @param string $serviceName
+     */
+    public function setServiceName($serviceName)
+    {
+        $this->serviceName = $serviceName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceName()
+    {
+        return $this->serviceName;
     }
 }
