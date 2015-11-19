@@ -11,6 +11,7 @@
 namespace UniversalServiceHandler\TransferClient;
 
 use Optionable;
+use UniversalServiceHandler\TransferClient\Exceptions\CurlTransferClientException;
 use UniversalServiceHandler\TransferClient\TransferClientInterface;
 
 class CurlTransferClient implements TransferClientInterface
@@ -32,11 +33,11 @@ class CurlTransferClient implements TransferClientInterface
 
         $ch = curl_init();
         curl_setopt_array($ch, $curlOptions);
-
         $response = curl_exec($ch);
+        $error = curl_errno($ch);
 
-        if ($response === false) {
-            throw new \RuntimeException('Curl error: ' . curl_error($ch));
+        if($error){
+            throw new CurlTransferClientException('Curl errorcode : ' . $error . ' Message: ' . curl_error($ch));
         }
 
         curl_close($ch);
